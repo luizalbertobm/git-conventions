@@ -29,6 +29,7 @@ Solves issue #132
 - chore: (updating grunt tasks etc; no production code change)
 
 **Git commit message template:**
+
 Create a file called .gitmessage with the following content:
 ```
 # 50-character subject line
