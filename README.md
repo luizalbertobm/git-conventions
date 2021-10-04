@@ -18,7 +18,7 @@ These branches must be available permanently and should be used in CI/CD process
 
 ### **master/ or main/** 
 
-This branch contains production code. All development code is merged into master at a particular time. It should be stable all the time and won’t allow any direct check-in. You should only merge it after code review.
+This branch contains production code. All development code is merged into master at some point. It should be stable all the time and won’t allow any direct check-in. We should merge the develop into it when the develop branch is ready to release.
 
 ## Temporary Git Branches
 As the name indicates, these are the branches that can be created and deleted when needed.
