@@ -4,44 +4,44 @@ This repository was created as a suggestion to document and standardize the way 
 ## Git Flow
 Giflow is an alternative Git branching model that involves the use of feature branches and multiple primary branches.
 
-## Diagram
+### Diagram
 <img src="assets/git-flow-4.svg" width="300">
 
-# Branches Naming
+## Branches Naming
 
-## Regular Git Branches
+### Regular Git Branches
 These branches must be available permanently and should be used in CI/CD process.
 
-### **develop** 
+**develop** 
 
  This branch contains pre-production code. When the features branches are finished and their pull request are approved then they get merged into develop. Pull requests in the develop branch need to go through code reviews and a bunch of tests before being merged.
 
-### **master or main** 
+**master or main** 
 
 This branch contains production code. All development code is merged into master at some point. It should be stable all the time and won’t allow any direct check-in. We should merge the develop into it when the develop branch is ready to release.
 
-## Temporary Git Branches
+### Temporary Git Branches
 As the name indicates, these are the branches that can be created and deleted when needed.
 
-### Prefixes:
+Prefixes:
 - **feature** — must be branched from develop and is used to build a new application feature. When the feature is complete, it needs a pull request to be merged back into develop.
-- **hotfix** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop.
+- **hotfix** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop branches.
 - **release** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
 
 ### Subjects:
-A good way to name temporary branches is `prefix/task-id-short-description`
+A good way to name temporary branches can be `prefix/task-id-short-description`
 
-Real Example: feature/FLG-123-new-users-page
+Real Example: feature/PRJ-123-new-users-page
 
-# Semantic commits
-**Commits format:** 
+## Semantic commits
+### Commits format:
 ```
 <type>(<scope>): <subject>
 <opcional body>
 <opcional footer>
 ```
 
-**Example:**
+### Example:
 ```
 fix(containers/profile): adjust argument of getThumbnailImage function
 
@@ -52,7 +52,7 @@ Now receives the correct argument of type FOO.
 Solves issue #132
 ```
 
-**Prefixes:**
+### Prefixes:
 - feat: (new feature for the user, not a new feature for build script)
 - fix: (bug fix for the user, not a fix to a build script)
 - docs: (changes to the documentation)
@@ -61,7 +61,7 @@ Solves issue #132
 - test: (adding missing tests, refactoring tests; no production code change)
 - chore: (updating grunt tasks etc; no production code change)
 
-**Git commit message template:**
+### Git commit message template:
 
 Create a file called .gitmessage with the following content:
 ```
