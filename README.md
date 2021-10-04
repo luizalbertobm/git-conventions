@@ -28,10 +28,11 @@ Prefixes:
 - **hotfix** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop branches.
 - **release** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
 
-### Subjects:
+### Example:
 A good way to name temporary branches can be `prefix/task-id-short-description`
-
-Real Example: feature/PRJ-123-new-users-page
+``` 
+feature/PRJ-123-new-users-page 
+```
 
 ## Semantic commits
 ### Commits format:
