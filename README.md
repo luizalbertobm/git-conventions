@@ -1,6 +1,5 @@
+# Git Workflow
 This repository was created as a suggestion to document and standardize the way to use git in projects.
-
-# The Workflow
 
 ## Git Flow
 Giflow is an alternative Git branching model that involves the use of feature branches and multiple primary branches.
