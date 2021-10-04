@@ -1,29 +1,38 @@
-This repository was created as a suggestion to document and standardize commits
+This repository was created as a suggestion to document and standardize the way to use git in projects.
+
+# The Workflow
+
+## Git Flow
+Giflow is an alternative Git branching model that involves the use of feature branches and multiple primary branches.
+
+## Diagram
+<img src="assets/git-flow-4.svg" width="300">
 
 # Branches Naming
 
 ## Regular Git Branches
 These branches must be available permanently and should be used in CI/CD process.
 
-- **develop/** —  This branch contains pre-production code. When the features branches are finished and their pull request are approved then they get merged into develop. Pull requests in the develop branch need to go through code reviews and a bunch of tests before being merged.
+### **develop/** 
 
-- **master/ or main/** — This branch contains production code. All development code is merged into master at a particular time. It should be stable all the time and won’t allow any direct check-in. You should only merge it after code review.
+ This branch contains pre-production code. When the features branches are finished and their pull request are approved then they get merged into develop. Pull requests in the develop branch need to go through code reviews and a bunch of tests before being merged.
+
+### **master/ or main/** 
+
+This branch contains production code. All development code is merged into master at a particular time. It should be stable all the time and won’t allow any direct check-in. You should only merge it after code review.
 
 ## Temporary Git Branches
 As the name indicates, these are the branches that can be created and deleted when needed.
 
-### Prefixes
+### Prefixes:
 - **feature/** — must be branched from develop and is used to build a new application feature. When the feature is complete, it needs a pull request to be merged back into develop.
 - **hotfix/** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop.
 - **release/** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
 
-### Branch subject
-Pattern: prefix/task-id-short-description
+### Subjects:
+A good way to name temporary branches is `prefix/task-id-short-description`
 
-Example: feature/FLG-123-add-student-date
-
-# The Git Flow Diagram
-<img src="assets/git-flow-4.svg" width="300">
+Real Example: feature/FLG-123-new-users-page
 
 # Semantic commits
 **Commits format:** 
