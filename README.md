@@ -12,11 +12,11 @@ Giflow is an alternative Git branching model that involves the use of feature br
 ## Regular Git Branches
 These branches must be available permanently and should be used in CI/CD process.
 
-### **develop/** 
+### **develop** 
 
  This branch contains pre-production code. When the features branches are finished and their pull request are approved then they get merged into develop. Pull requests in the develop branch need to go through code reviews and a bunch of tests before being merged.
 
-### **master/ or main/** 
+### **master or main** 
 
 This branch contains production code. All development code is merged into master at some point. It should be stable all the time and won’t allow any direct check-in. We should merge the develop into it when the develop branch is ready to release.
 
@@ -24,9 +24,9 @@ This branch contains production code. All development code is merged into master
 As the name indicates, these are the branches that can be created and deleted when needed.
 
 ### Prefixes:
-- **feature/** — must be branched from develop and is used to build a new application feature. When the feature is complete, it needs a pull request to be merged back into develop.
-- **hotfix/** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop.
-- **release/** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
+- **feature** — must be branched from develop and is used to build a new application feature. When the feature is complete, it needs a pull request to be merged back into develop.
+- **hotfix** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop.
+- **release** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
 
 ### Subjects:
 A good way to name temporary branches is `prefix/task-id-short-description`
