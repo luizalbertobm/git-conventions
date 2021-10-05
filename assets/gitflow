@@ -21,12 +21,13 @@ remove-branch(){
 new-branch-from-develop(){
   type=$1
   git-update-dev
-  question "Type the ticket code: (leave it blank if there is no one)"
+  question "Type the ticket code (leave it blank if there is no one):"
   read  ticket
   question "What is the feature subject?"
-  read name
+  read subject
+  subject="${subject// /-}"
   if [ ${#ticket} -gt 0 ]; then ticket="$ticket-"; fi
-  git checkout -b "$type/$ticket$name"
+  git checkout -b "$type/$ticket$subject"
 }
 
 git-prepare(){
