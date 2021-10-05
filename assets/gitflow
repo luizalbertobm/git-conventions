@@ -11,7 +11,7 @@ remove-branch(){
   branch=$(git branch --show-current)
   question "Do you really want to remove $branch? [Y/n]"
   read -n 1 -r
-  # echo    # (optional) move to a new line  
+  echo    # move to a new line  
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     git checkout develop
