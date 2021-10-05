@@ -34,8 +34,8 @@ A good way to name temporary branches can be `prefix/task-id-short-description`
 feature/PRJ-123-new-users-page 
 ```
 ## Gitflow helper script
-Download this file to your `/usr/local/bin` directory to have a comand line helper:
-[gitflow](https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow)
+Download the [gitflow](https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow) file to your `/usr/local/bin` directory to have a comand line helper:
+
 or run the following command:
 ```bash
 wget -P /usr/local/bin https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow
