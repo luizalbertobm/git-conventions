@@ -9,10 +9,11 @@ git-update-dev(){
 
 remove-branch(){
   branch=$(git branch --show-current)
-  question "Are you sure about detion of $branch? [Y/n]"
-  read -n 1 -r $REPLY
-  if [[ ! $REPLY =~ ^[Yy]$ ]]
-  then 
+  question "Do you really want to remove $branch? [Y/n]"
+  read -n 1 -r
+  echo    # (optional) move to a new line  
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
     git checkout develop
     git branch -D $branch
   fi
@@ -42,7 +43,7 @@ git-finish(){
 }
 
 question "What do you want to do? "
-sistemos=(
+items=(
   "Create a new feature" 
   "Create a new hotfix" 
   "Start a new release" 
@@ -50,8 +51,8 @@ sistemos=(
   "Publish current branch to remote"
   "Create a new Pull Request"
   "Delete current branch from local")
-select os in "${sistemos[@]}"; do
-    case $os in
+select opt in "${items[@]}"; do
+    case $opt in
         "Create a new feature")
             new-branch-from-develop feature
             break ;;
