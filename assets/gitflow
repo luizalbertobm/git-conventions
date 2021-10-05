@@ -2,14 +2,14 @@
 
 question() { echo "`tput setaf 3`$@`tput sgr0`"; }
 
-git-update-dev(){
-  git checkout develop
+git-update-branch(){
+  git checkout $1
   git pull
 }
 
 remove-branch(){
   branch=$(git branch --show-current)
-  question "Do you really want to remove $branch? [Y/n]"
+  question "Do you really want to remove $branch? [y/n]"
   read -n 1 -r
   echo    # move to a new line  
   if [[ $REPLY =~ ^[Yy]$ ]]
@@ -21,7 +21,7 @@ remove-branch(){
 
 new-branch-from-develop(){
   type=$1
-  git-update-dev
+  if [ "$type" = "hotfix" ]; then git-update-branch "main"; else git-update-branch "develop"; fi
   question "Type the ticket code (leave it blank if there is no one):"
   read  ticket
   question "What is the feature subject?"
@@ -54,13 +54,13 @@ items=(
 select opt in "${items[@]}"; do
     case $opt in
         "Create a new feature")
-            new-branch-from-develop feature
+            new-branch-from-develop "feature"
             break ;;
         "Create a new hotfix")
-            new-branch-from-develop hotfix
+            new-branch-from-develop "hotfix"
             break ;;
         "Start a new release")
-            new-branch-from-develop release
+            new-branch-from-develop "release"
             break ;;
         "Update current branch with develop changes")
             git-prepare
