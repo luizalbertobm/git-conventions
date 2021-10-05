@@ -46,8 +46,8 @@ sistemos=(
   "Create a new hotfix" 
   "Start a new release" 
   "Update current branch with develop changes"
-  "Publish current branch changes to remote"
-  "Create a new PR"
+  "Publish current branch to remote"
+  "Create a new Pull Request"
   "Delete current branch from local")
 select os in "${sistemos[@]}"; do
     case $os in
@@ -63,10 +63,10 @@ select os in "${sistemos[@]}"; do
         "Update current branch with develop changes")
             git-prepare
             break ;;
-        "Publish current branch changes to remote")
+        "Publish current branch to remote")
             git-finish
             break ;;
-        "Create a new PR")
+        "Create a new Pull Request")
             project=$(basename `git rev-parse --show-toplevel`)
             xdg-open "https://bitbucket.org/furtherlearninggroup/${project}/pull-requests/new"
             break ;;

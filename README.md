@@ -36,9 +36,11 @@ feature/PRJ-123-new-users-page
 ## Gitflow helper script
 Download the [gitflow](https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow) file to your `/usr/local/bin` directory to have a comand line helper, or run the command:
 ```bash
-sudo wget -P /usr/local/bin https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow
-sudo chmod +x /usr/local/bin/gitflow
+sudo wget -P /usr/local/bin https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow && sudo chmod +x /usr/local/bin/gitflow
 ```
+After having downloaded the helper script, type `gitflow` in your terminal and your prompt should ask you something like this:
+
+<img alt="gitflow command" src="assets/gitflow.png">
 
 ## Semantic commits
 ### Commits format:
