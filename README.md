@@ -1,7 +1,7 @@
-# Git Workflow
+# Git Conventions
 This repository was created as a suggestion to document and standardize the way to use git in projects.
 
-## Git Flow
+## Gitflow Workflow
 Giflow is an alternative Git branching model that involves the use of feature branches and multiple primary branches.
 
 ### Diagram
@@ -10,7 +10,7 @@ Giflow is an alternative Git branching model that involves the use of feature br
 ## Branches Naming
 
 ### Regular Git Branches
-These branches must be available permanently and should be used in CI/CD process.
+These branches must be available permanently and should be used for CI/CD process.
 
 **develop** 
 
@@ -28,8 +28,8 @@ Prefixes:
 - **hotfix** — hotfix branches are necessary to act immediately upon an undesired status of master. They may branch off from master and must merge into master and develop branches.
 - **release** — release branches support preparation of a new production release. They allow many minor bugs to be fixed and preparation of meta-data for a release. They may branch off from develop and must merge into master and develop.
 
+Temporary branches should be like this: `prefix/task-id-short-description`
 ### Example:
-A good way to name temporary branches can be `prefix/task-id-short-description`
 ``` 
 feature/PRJ-123-new-users-page 
 ```
