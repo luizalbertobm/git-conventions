@@ -7,11 +7,26 @@ git-update-dev(){
   git pull
 }
 
+remove-branch(){
+  branch=$(git branch --show-current)
+  question "Are you sure about detion of $branch? [Y/n]"
+  read -n 1 -r $REPLY
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+  then 
+    git checkout develop
+    git branch -D $branch
+  fi
+}
+
 new-branch-from-develop(){
   type=$1
   git-update-dev
-  read -p "what is the feature name? " name
-  git checkout -b $type/$name
+  question "Type the ticket code: (leave it blank if there is no one)"
+  read  ticket
+  question "What is the feature subject?"
+  read name
+  if [ ${#ticket} -gt 0 ]; then ticket="$ticket-"; fi
+  git checkout -b "$type/$ticket$name"
 }
 
 git-prepare(){
@@ -31,8 +46,9 @@ sistemos=(
   "Create a new hotfix" 
   "Start a new release" 
   "Update current branch with develop changes"
-  "Publish changes in current branch"
-  "Create a new PR")
+  "Publish current branch changes to remote"
+  "Create a new PR"
+  "Delete current branch from local")
 select os in "${sistemos[@]}"; do
     case $os in
         "Create a new feature")
@@ -47,12 +63,15 @@ select os in "${sistemos[@]}"; do
         "Update current branch with develop changes")
             git-prepare
             break ;;
-        "Publish changes in current branch")
+        "Publish current branch changes to remote")
             git-finish
             break ;;
         "Create a new PR")
             project=$(basename `git rev-parse --show-toplevel`)
             xdg-open "https://bitbucket.org/furtherlearninggroup/${project}/pull-requests/new"
+            break ;;
+        "Delete current branch from local")
+            remove-branch
             break ;;
         *) echo "invalid option $REPLY" ;;
     esac
