@@ -1,0 +1,59 @@
+#!/bin/bash
+
+question() { echo "`tput setaf 3`$@`tput sgr0`"; }
+
+git-update-dev(){
+  git checkout develop
+  git pull
+}
+
+new-branch-from-develop(){
+  type=$1
+  git-update-dev
+  read -p "what is the feature name? " name
+  git checkout -b $type/$name
+}
+
+git-prepare(){
+  echo "Merging the remote develop into current branch"
+  git fetch origin develop:develop
+  git merge develop
+}
+
+git-finish(){
+  echo "Pushing the new branch to remote"
+  git push -u origin $(git branch --show-current)
+}
+
+question "What do you want to do? "
+sistemos=(
+  "Create a new feature" 
+  "Create a new hotfix" 
+  "Start a new release" 
+  "Update current branch with develop changes"
+  "Publish changes in current branch"
+  "Create a new PR")
+select os in "${sistemos[@]}"; do
+    case $os in
+        "Create a new feature")
+            new-branch-from-develop feature
+            break ;;
+        "Create a new hotfix")
+            new-branch-from-develop hotfix
+            break ;;
+        "Start a new release")
+            new-branch-from-develop release
+            break ;;
+        "Update current branch with develop changes")
+            git-prepare
+            break ;;
+        "Publish changes in current branch")
+            git-finish
+            break ;;
+        "Create a new PR")
+            project=$(basename `git rev-parse --show-toplevel`)
+            xdg-open "https://bitbucket.org/furtherlearninggroup/${project}/pull-requests/new"
+            break ;;
+        *) echo "invalid option $REPLY" ;;
+    esac
+done

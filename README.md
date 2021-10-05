@@ -33,6 +33,13 @@ A good way to name temporary branches can be `prefix/task-id-short-description`
 ``` 
 feature/PRJ-123-new-users-page 
 ```
+## Gitflow helper script
+Download this file to your `/usr/local/bin` directory to have a comand line helper:
+[gitflow](https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow)
+or run the following command:
+```bash
+wget -P /usr/local/bin https://raw.githubusercontent.com/luizalbertobm/conventional-commits/main/assets/gitflow
+```
 
 ## Semantic commits
 ### Commits format:
@@ -93,4 +100,4 @@ Inside your project folder, you'll find the .git folder. Open the .git/config fi
 ```
 It makes no sense, to create this for every project, so you can add this inside your global git configuration. On unix systems this can be found on **~/.gitconfig**
 
-I would propose you to create a repository for your company or department where you store these templates. This makes it easier to update them for the whole team. Then you just clone the repository and link it correctly: template = path/to/cloned/repository/.gitmessage.
+I would propose to create a repository to store these templates. This makes it easier to update them for the whole team. Then you just clone the repository and link it correctly: template = path/to/cloned/repository/.gitmessage.
