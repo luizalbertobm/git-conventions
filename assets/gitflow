@@ -47,10 +47,14 @@ items=(
   "Create a new feature" 
   "Create a new hotfix" 
   "Start a new release" 
-  "Update current branch with develop changes"
+  "Prepare PR (merge from develop)"
   "Publish current branch to remote"
   "Create a new Pull Request"
-  "Delete current branch from local")
+  "Delete current branch from local"
+  "Remove all untracked files"
+  "Stash changes"
+  "Pop stash (apply and remove)"
+)
 select opt in "${items[@]}"; do
     case $opt in
         "Create a new feature")
@@ -62,7 +66,7 @@ select opt in "${items[@]}"; do
         "Start a new release")
             new-branch-from-develop "release"
             break ;;
-        "Update current branch with develop changes")
+        "Prepare to PR (merge from develop)")
             git-prepare
             break ;;
         "Publish current branch to remote")
@@ -74,6 +78,15 @@ select opt in "${items[@]}"; do
             break ;;
         "Delete current branch from local")
             remove-branch
+            break ;;
+        "Remove all untracked files")
+            git clean -id
+            break ;;
+        "Stash changes")
+            git stash
+            break ;;
+        "Pop stash (apply and remove)")
+            git stash pop
             break ;;
         *) echo "invalid option $REPLY" ;;
     esac
