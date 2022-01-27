@@ -43,6 +43,20 @@ git-finish(){
   git push -u origin $(git branch --show-current)
 }
 
+flg(){
+  command=$1
+  params=$2
+  case $opt in
+    "change-branch")
+        new-branch-from-develop "feature"
+        break ;;
+    "Create a new hotfix")
+        new-branch-from-develop "hotfix"
+        break ;;
+    *) echo "invalid option $REPLY" ;;
+  esac
+}
+
 question "What do you want to do? "
 items=(
   "Create a new feature" 

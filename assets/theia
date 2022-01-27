@@ -1,0 +1,81 @@
+#!/bin/bash
+
+question() { echo "`tput setaf 3`$@`tput sgr0`"; }
+
+generate-entities(){
+  bin/console doctrine:generate-entities
+}
+
+show-db-changes(){
+  question "Type the table name you changed"
+  read table
+  
+  bin/console doctrine:update-schema | grep $table
+}
+
+generate-migration(){
+  bin/console migrations:generate
+}
+
+migrate(){
+  bin/console migrations:migrate -n -v
+}
+
+rollback(){
+  bin/console migrations:migrate prev -n
+}
+
+clear-cache(){
+  bin/console orm:clear-cache:m
+  bin/console orm:clear-cache:r
+  bin/console orm:clear-cache:q
+}
+
+generate-repositories(){
+  bin/console doctrine:generate-repositories
+}
+
+run-service-queues(){
+  while sleep 1; do php cron/service_worker.php; done 
+}
+
+question "What do you want to do? "
+items=(
+  "Generate/Update Entities" 
+  "Generate/Update Repositories"
+  "Show DB changes" 
+  "Generate migration file" 
+  "Migrate"
+  "Rollback Migration"
+  "Clear cache"
+  "Run service queues"
+)
+select opt in "${items[@]}"; do
+    case $opt in
+        "Generate/Update Entities")
+            generate-entities
+            break ;;
+        "Show DB changes")
+            show-db-changes
+            break ;;
+        "Generate migration file")
+            generate-migration
+            break ;;
+        "Migrate")
+            migrate
+            break ;;
+        "Rollback Migration")
+            rollback
+            break ;;
+        "Clear cache")
+            clear-cache
+            break ;;
+        "Generate/Update Repositories")
+            generate-repositories
+            break ;;
+        "Run service queues")
+            run-service-queues
+            break ;;
+        *) echo "invalid option $REPLY" ;;
+    esac
+done
